@@ -1,4 +1,3 @@
-import { Card, CardBody } from 'react-bootstrap';
 import FormSubmit from './formSubmit/FormSubmit';
 import Filter from './filter/Filter';
 import React, { useEffect } from 'react';
@@ -6,7 +5,7 @@ import ContactList from './contactList/ContactList';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchContacts } from '../redux/contactService';
 import { selectError, selectIsLoading } from '../redux/selectors';
-import { ClipLoader } from 'react-spinners';
+import { Box, Heading, Spinner } from '@chakra-ui/react';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -28,16 +27,19 @@ export const App = () => {
         color: '#37cc57',
       }}
     >
-      <Card>
-        <h2>Phonebook</h2>
-        <CardBody>
+      <Box>
+        <Heading as="h2" size="3xl" noOfLines={1}>
+          Phonebook
+        </Heading>
+        {/* <h1></h1> */}
+        <section>
           <FormSubmit />
           <h4>Contacts</h4>
           <Filter />
-          {isLoading && !error && <ClipLoader />}
+          {isLoading && !error && <Spinner color="red.500" />}
           <ContactList />
-        </CardBody>
-      </Card>
+        </section>
+      </Box>
     </div>
   );
 };

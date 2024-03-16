@@ -25,14 +25,14 @@ export const addContact = createAsyncThunk(
       } = thunkAPI.getState();
 
       if (contacts.find(item => item.name === contact.name)) {
-        Notiflix.Notify.failure(
+        console.error.failure(
           `Contact with name '${contact.name}' is already in contacts.`
         );
         return thunkAPI.rejectWithValue('Contact already exist');
       }
 
       const response = await axios.post('/contacts', contact);
-      Notiflix.Notify.success(
+      console.error.success(
         `Contact with name '${contact.name}' has been added succesfully to contacts list.`
       );
       return response.data;

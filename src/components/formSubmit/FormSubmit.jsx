@@ -4,11 +4,11 @@ import { addContact } from '../../redux/contactService';
 import css from './FormSubmit.module.css';
 import {
   Button,
-  Form,
+  Container,
   FormControl,
-  FormGroup,
   FormLabel,
-} from 'react-bootstrap';
+  Input,
+} from '@chakra-ui/react';
 
 const FormSubmit = () => {
   const dispatch = useDispatch();
@@ -27,12 +27,12 @@ const FormSubmit = () => {
   };
 
   return (
-    <Form className={css.formFlex} onSubmit={handleSubmit}>
-      <FormGroup className={css.form}>
+    <Container className={css.formFlex} onSubmit={handleSubmit}>
+      <FormControl className={css.form}>
         <FormLabel className={css.contactForm__label} htmlFor="name">
           Name
         </FormLabel>
-        <FormControl
+        <Input
           className={css.filterInput}
           id="name"
           type="text"
@@ -41,13 +41,13 @@ const FormSubmit = () => {
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
         />
-      </FormGroup>
+      </FormControl>
 
-      <FormGroup className={css.form}>
+      <FormControl className={css.form}>
         <FormLabel className={css.contactForm__label} htmlFor="number">
           Number
         </FormLabel>
-        <FormControl
+        <Input
           className={css.filterInput}
           id="number"
           type="tel"
@@ -56,14 +56,14 @@ const FormSubmit = () => {
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
         />
-      </FormGroup>
+      </FormControl>
 
-      <FormGroup className={css.form}>
+      <FormControl className={css.form}>
         <Button className={css.formSubmitBtn} type="submit">
           Add Contact
         </Button>
-      </FormGroup>
-    </Form>
+      </FormControl>
+    </Container>
   );
 };
 
