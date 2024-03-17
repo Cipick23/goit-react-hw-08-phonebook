@@ -1,9 +1,9 @@
 import React from 'react';
 import css from './Filter.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { setContactsFilter } from '../../redux/contactsFilterSlice';
-import { selectContactsFilter } from '../../redux/selectors';
 import { FormControl, Input } from '@chakra-ui/react';
+import { selectContactsFilter } from '../../redux/tasks/selectors';
+import { setContactsFilter } from '../../redux/tasks/contactsFilterSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();

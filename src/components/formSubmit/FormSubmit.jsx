@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/contactService';
 import css from './FormSubmit.module.css';
 import {
   Button,
@@ -9,6 +8,7 @@ import {
   FormLabel,
   Input,
 } from '@chakra-ui/react';
+import { addContact } from '../../redux/tasks/contactService';
 
 const FormSubmit = () => {
   const dispatch = useDispatch();
