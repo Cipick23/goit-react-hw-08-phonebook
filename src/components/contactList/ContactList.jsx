@@ -1,40 +1,44 @@
 import React from 'react';
-import propTypes from 'prop-types';
-import css from './ContactList.module.css';
 import { useSelector } from 'react-redux';
-import ContactItems from 'components/contactItems/ContactItems';
-import { selectFilteredContacts } from '../../redux/tasks/selectors';
+import { useFetchContactsQuery } from '../../redux/tasks/contactsApi';
+import { getFilter } from '../../redux/tasks/contactsSelectors';
+import Loader from '../loader/Loader';
+import { FormErrorMessage, List } from '@chakra-ui/react';
+import ContactItems from 'components/contactItems';
 
 const ContactList = () => {
-  const filteredContacts = useSelector(selectFilteredContacts);
+  const { data: contacts, error, isLoading } = useFetchContactsQuery();
+
+  const filter = useSelector(getFilter);
+
+  const filterContacts = () => {
+    return (
+      contacts &&
+      contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase())
+      )
+    );
+  };
+
+  const contactList = filterContacts();
+  const renderContacts = contacts && contactList.length > 0;
 
   return (
-    <ul className={css.menu}>
-      {filteredContacts.length ? (
-        filteredContacts.map(contact => (
-          <ContactItems
-            key={contact.id}
-            id={contact.id}
-            name={contact.name}
-            phone={contact.phone}
-          />
-        ))
-      ) : (
-        <p>Your phonebook is empty. Add your contacts</p>
-      )}
-    </ul>
+    <>
+      <List>
+        {renderContacts &&
+          contactList.map(({ id, name, number }) => (
+            <ContactItems id={id} key={id} name={name} number={number} />
+          ))}
+        {isLoading && <Loader />}
+        {error && (
+          <FormErrorMessage>
+            Try adding phone details or contact your administrator
+          </FormErrorMessage>
+        )}
+      </List>
+    </>
   );
-};
-
-ContactList.propTypes = {
-  list: propTypes.arrayOf(
-    propTypes.shape({
-      key: propTypes.string,
-      name: propTypes.string.isRequired,
-      phone: propTypes.string.isRequired,
-      deleteContact: propTypes.func,
-    })
-  ),
 };
 
 export default ContactList;

@@ -1,36 +1,31 @@
-import React from 'react';
-import css from './Filter.module.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { FormControl, Input } from '@chakra-ui/react';
-import { selectContactsFilter } from '../../redux/tasks/selectors';
-import { setContactsFilter } from '../../redux/tasks/contactsFilterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from '../../redux/tasks/contactsSelectors';
+import { FormLabel, Input } from '@chakra-ui/react';
+import { filter } from '../../redux/tasks/contactsSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(selectContactsFilter);
+  const filterName = useSelector(getFilter);
 
-  const filterChangeHandler = event => {
-    dispatch(setContactsFilter(event.target.value));
+  const onChangeFilter = evt => {
+    dispatch(filter(evt.currentTarget.value.trim()));
   };
-
   return (
-    <div className={css.filter}>
-      <h4>Find contacts by name:</h4>
-      <FormControl>
-        <Input
-          className={css.filterInput}
-          id="filter"
-          value={filter}
-          onChange={filterChangeHandler}
-          type="text"
-          placeholder="Search by name"
-          name="filter"
-          pattern="^[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]+(([' \-][a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż])?[a-zA-ZĄąĆćĘęŁłŃńÓóŚśŹźŻż]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-        />
-      </FormControl>
-    </div>
+    <FormLabel htmlFor="searchName" value={filterName}>
+      <span
+        style={{ fontWeight: 'bold', marginBottom: '0.5rem', display: 'block' }}
+      >
+        Find contacts by name
+      </span>
+      <Input
+        id="searchName"
+        type="text"
+        autoComplete="name"
+        value={filterName}
+        onChange={onChangeFilter}
+        placeholder="Enter search name"
+      />
+    </FormLabel>
   );
 };
 

@@ -1,16 +1,23 @@
-import { useAuth } from 'hooks';
-import { Navigation } from 'components/navigation/Navigation';
-import { UserMenu } from 'components/userMenu/UserMenu';
-import { AuthNav } from 'components/authNav/AuthNav';
-import css from './appBar.module.css';
+import { useSelector } from 'react-redux';
+// import styles from './appBar.module.css';
+import AuthForm from '../../components/authForm/AuthForm';
+import { Box } from '@chakra-ui/react';
+import UserMenu from '../userMenu/UserMenu';
+import Navigation from '../navigation/Navigation';
+import authSelectors from '../../redux/auth/authSelectors';
+import { HelmetProvider } from 'react-helmet-async';
 
-export const AppBar = () => {
-  const { isLoggedIn } = useAuth();
+function AppBar() {
+  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
-    <header className={css.header}>
-      <Navigation />
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </header>
+    <HelmetProvider>
+      <Box>
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthForm />}
+      </Box>
+    </HelmetProvider>
   );
-};
+}
+
+export default AppBar;

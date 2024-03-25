@@ -1,4 +1,4 @@
-import Alert from 'react-bootstrap/Alert';
+import { Alert } from '@chakra-ui/react';
 import React from 'react';
 
 function BasicAlert({ name, phoneNumber, showAlert, onClose }) {

@@ -117,3 +117,12 @@ body {
   flex-direction: column;
   gap: 24px;
 }
+
+/* // style={{
+  //   height: '90vh',
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   fontSize: 15,
+  //   color: '#37cc57',
+  // }} */

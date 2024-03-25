@@ -1,35 +1,32 @@
-import React from 'react';
-import propTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
-import css from './ContactItems.module.css';
-import { deleteContact } from '../../redux/tasks/contactService';
+import { Button, ListItem, Spinner } from '@chakra-ui/react';
+import { useDeleteContactMutation } from '../../redux/tasks/contactsApi';
 
-const ContactItems = props => {
-  const dispatch = useDispatch();
-
-  const ContactDeleteHandler = () => {
-    dispatch(deleteContact(props.id));
-  };
+function ContactItem({ id, name, number }) {
+  const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   return (
-    <li className={css.list}>
-      <p>{props.name}</p>
-      <p>{props.phone}</p>
-      <button
-        className={css.contactDelete}
-        type="button"
-        onClick={ContactDeleteHandler}
+    <ListItem
+      key={id}
+      borderWidth="1px"
+      borderRadius="md"
+      p="4"
+      mb="2"
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+    >
+      <p>
+        {name}: {number}{' '}
+      </p>
+      <Button
+        colorScheme="red"
+        onClick={() => deleteContact(id)}
+        disabled={isDeleting}
       >
-        Delete
-      </button>
-    </li>
+        {isDeleting ? <Spinner size="sm" color="white" /> : 'Delete'}
+      </Button>
+    </ListItem>
   );
-};
+}
 
-ContactItems.propTypes = {
-  name: propTypes.string.isRequired,
-  phone: propTypes.string,
-  id: propTypes.string,
-};
-
-export default ContactItems;
+export default ContactItem;
