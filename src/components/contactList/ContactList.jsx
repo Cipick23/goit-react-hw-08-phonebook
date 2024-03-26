@@ -5,6 +5,7 @@ import { getFilter } from '../../redux/tasks/contactsSelectors';
 import Loader from '../loader/Loader';
 import { FormErrorMessage, List } from '@chakra-ui/react';
 import ContactItems from 'components/contactItems';
+// import styles from './ContactList.module.css';
 
 const ContactList = () => {
   const { data: contacts, error, isLoading } = useFetchContactsQuery();
@@ -24,7 +25,7 @@ const ContactList = () => {
   const renderContacts = contacts && contactList.length > 0;
 
   return (
-    <>
+    <section>
       <List>
         {renderContacts &&
           contactList.map(({ id, name, number }) => (
@@ -37,7 +38,7 @@ const ContactList = () => {
           </FormErrorMessage>
         )}
       </List>
-    </>
+    </section>
   );
 };
 

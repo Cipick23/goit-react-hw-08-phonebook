@@ -10,6 +10,7 @@ import {
 // import logOut from '../../redux/auth/authOperations';
 import authSelectors from '../../redux/auth/authSelectors';
 import authOperations from '../../redux/auth/authOperations';
+import styles from './UserMenu.module.css';
 
 function UserMenu() {
   const dispatch = useDispatch();
@@ -17,12 +18,15 @@ function UserMenu() {
 
   return (
     <Menu>
-      <MenuButton as={Button} variant="ghost">
+      <MenuButton as={Button} variant="ghost" className={styles.formSubmitBtn}>
         Welcome, {name}
       </MenuButton>
       <MenuList>
         <MenuGroup title="User Actions">
-          <MenuItem onClick={() => dispatch(authOperations.logOut())}>
+          <MenuItem
+            onClick={() => dispatch(authOperations.logOut())}
+            className={styles.formSubmitBtn}
+          >
             Log Out
           </MenuItem>
         </MenuGroup>

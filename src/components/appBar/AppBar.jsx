@@ -6,13 +6,14 @@ import UserMenu from '../userMenu/UserMenu';
 import Navigation from '../navigation/Navigation';
 import authSelectors from '../../redux/auth/authSelectors';
 import { HelmetProvider } from 'react-helmet-async';
+import styles from './appBar.module.css';
 
 function AppBar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <HelmetProvider>
-      <Box>
+      <Box className={styles.header}>
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthForm />}
       </Box>

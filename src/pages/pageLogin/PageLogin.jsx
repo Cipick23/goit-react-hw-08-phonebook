@@ -9,6 +9,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import authOperations from '../../redux/auth/authOperations';
+import styles from './PageLogin.module.css';
 
 function PageLogin() {
   const dispatch = useDispatch();
@@ -33,11 +34,14 @@ function PageLogin() {
         <Box as="h2" fontSize="xl" fontWeight="semibold">
           Please enter your email and password
         </Box>
-        <form onSubmit={handleSubmit}>
-          <FormControl>
-            <FormLabel htmlFor="loginMail">Email</FormLabel>
+        <Box onSubmit={handleSubmit}>
+          <FormControl className={styles.form}>
+            <FormLabel htmlFor="loginMail" className={styles.form}>
+              Email
+            </FormLabel>
             <Input
-              id='loginMail'
+              className={styles.filterInput}
+              id="loginMail"
               type="email"
               name="email"
               autoComplete="email"
@@ -49,9 +53,12 @@ function PageLogin() {
             />
           </FormControl>
           <FormControl>
-            <FormLabel htmlFor="loginPassword">Password</FormLabel>
+            <FormLabel htmlFor="loginPassword" className={styles.form}>
+              Password
+            </FormLabel>
             <Input
-              id='loginPassword'
+              className={styles.filterInput}
+              id="loginPassword"
               type="password"
               name="password"
               title="Enter your password"
@@ -60,10 +67,14 @@ function PageLogin() {
               onChange={handleChange}
             />
           </FormControl>
-          <Button colorScheme="blue" type="submit">
+          <Button
+            colorScheme="blue"
+            type="submit"
+            className={styles.formSubmitBtn}
+          >
             Log In
           </Button>
-        </form>
+        </Box>
       </VStack>
     </Box>
   );

@@ -8,6 +8,7 @@ import {
 import Loader from '../loader/Loader';
 import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
 import { toast } from 'react-toastify';
+import styles from './ContactForm.module.css';
 
 function ContactForm() {
   const [name, setName] = useState('');
@@ -57,10 +58,15 @@ function ContactForm() {
   };
 
   return (
-    <FormControl onSubmit={handleSubmit} autoComplete="on">
-      <FormLabel htmlFor="addContact">
+    <FormControl
+      onSubmit={handleSubmit}
+      autoComplete="on"
+      className={styles.form}
+    >
+      <FormLabel htmlFor="addContact" className={styles.form}>
         Name
         <Input
+          className={styles.filterInput}
           type="text"
           id="addContact"
           name="name"
@@ -74,9 +80,10 @@ function ContactForm() {
         />
       </FormLabel>
 
-      <FormLabel htmlFor="number_input">
+      <FormLabel htmlFor="number_input" className={styles.form}>
         Number
         <Input
+          className={styles.filterInput}
           type="tel"
           id="number_input"
           name="number"
@@ -90,7 +97,9 @@ function ContactForm() {
         />
       </FormLabel>
 
-      <Button type="submit">Add contact</Button>
+      <Button type="submit" className={styles.formSubmitBtn}>
+        Add contact
+      </Button>
       <Toaster />
       {isLoading && <Loader />}
     </FormControl>

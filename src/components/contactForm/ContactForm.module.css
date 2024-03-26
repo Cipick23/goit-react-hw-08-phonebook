@@ -16,8 +16,8 @@
 
 .filterInput {
   padding: 12px 24px;
-  outline: none;
-  border: none;
+  /* outline: none; */
+  border: 1px solid #37cc57;
   border-radius: 4px;
   cursor: pointer;
   color: #050505;
@@ -101,9 +101,9 @@
   padding: 8px 20px;
   border-radius: 24px;
   cursor: pointer;
-  /* background-color: #28a745; */
+  background-color: #28a745;
   transition: 0.3s;
-  /* color: #fff; */
+  color: #fff;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 12px;
   font-weight: 500;

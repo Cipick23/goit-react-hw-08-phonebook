@@ -61,3 +61,13 @@
 .contactDelete:hover {
   color: #fe4f4f;
 }
+
+.listItem {
+  border-width: 1px;
+  border-radius: md;
+  padding: 4px;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

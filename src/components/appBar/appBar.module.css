@@ -3,5 +3,25 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
-  border-bottom: 1px solid #2a363b;
+  border-bottom: 1px solid #37cc57;
+}
+
+.header {
+  min-width: 440px;
+  background-color: #fff;
+  width: 80%;
+  max-width: 550px;
+  margin: 12px auto;
+  padding: 1em;
+  box-shadow: #050505;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  max-width: 540px;
+  margin: 0 auto;
+  border-bottom: 4px solid;
+  border-image: linear-gradient(to right, #b345fc, #f50000, #fcf945, #b345fc)
+    47% 0%;
 }
