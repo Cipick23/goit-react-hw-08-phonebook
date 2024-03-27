@@ -1,6 +1,7 @@
 import { Toast } from '@chakra-ui/react';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
@@ -27,10 +28,10 @@ export const addContact = createAsyncThunk(
         name: name,
         number: number,
       });
-      Toast.info(`${response.name} added to contacts.`);
+      toast.info(`${response.name} added to contacts.`);
       return response.data;
     } catch (error) {
-      Toast.error('oops.... something was wrong');
+      toast.error('oops.... something was wrong');
       return thunkAPI.rejectWithValue(error);
     }
   }
